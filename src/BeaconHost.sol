@@ -6,6 +6,12 @@ error FunctionNotFound(bytes4 _functionSelector);
 
 
 contract BaconHostDiamond {
+
+    constructor(IDiamond.FacetCut[] memory _diamondCut) {
+        LibDiamond.setContractOwner(msg.sender);
+        LibDiamond.diamondCut({_diamondCut: _diamondCut, _init: address(0), _calldata: new bytes(0)});
+    }
+
     function _fallback() internal {
         LibDiamond.DiamondStorage storage ds;
         bytes32 position = LibDiamond.DIAMOND_STORAGE_POSITION;

@@ -1,0 +1,25 @@
+the idea is that this is a centralized service that facilitates off-chain oracle fetches for smart contracts.
+
+idea of a customer would be someone doing a merch drop for NFT holders and wants to combine beaconhost with tokenhost to create a side chain for their merch drop, use the beacon chain programming in solidity to ensure that holders have an nft and issue merch tokens on the side chain!
+
+we could have the code live entirely on the sidechain and have the redeem token function issue be issued by the end customer who would make a claim to redeem tokens.
+
+the solidity code would finsih its transaction without issuinga  token but emit an event that beaconchain would pick up. beacon chainw ould make the web3 api request / or some NFT specific request and call a callback with its response!
+then that tx can issue tokens for the end client to use for the merch drop.
+the client can also use on chain encryption to share their PII to the nft project
+
+
+
+
+alternatively, a query can be made off chain using javascript to get a signed assertion from bacon chain - beacon chain can be used as a signing service.
+
+also it's possible that the developer is able to be their own oracle service and in web3 javascript create a signed assertion that is equivalent of the web3 api. 
+
+the problem is that this would be a server -- so basically token host can do this and offer signed web3 api queries for end users! this could be verified on chain and only require one transaction.
+
+i think that both are interesting
+
+
+we are going to write a diamond facet that serves as a helper for making simple queries - maybe eth wallet balance is an ok one to start with :) 
+
+we'll want to have time stamps in the callbacks as well and functions can decide how stale things can be
